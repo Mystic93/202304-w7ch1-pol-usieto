@@ -1,3 +1,5 @@
+import { type Types } from "mongoose";
+
 export interface RobotsStructure {
   name: string;
   img: string;
@@ -7,5 +9,5 @@ export interface RobotsStructure {
 }
 
 export interface RobotDocumentStructure extends RobotsStructure {
-  _id: string;
+  _id: Types.ObjectId;
 }
