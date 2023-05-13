@@ -2,6 +2,7 @@ import "./loadEnvironments.js";
 import chalk from "chalk";
 import createDebug from "debug";
 import app from "./server/index.js";
+import mongoose from "mongoose";
 
 const debug = createDebug("robotsdb-api:root");
 
@@ -16,5 +17,7 @@ if (!mongoDbConnection) {
 app.listen(port, () => {
   debug(`Listening on ${chalk.green(`http://localhost:${port}`)}`);
 });
+
+await mongoose.connect(mongoDbConnection);
 
 debug(chalk.blue(`Connnected to database`));
