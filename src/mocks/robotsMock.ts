@@ -1,5 +1,5 @@
 import { Types } from "mongoose";
-import { type RobotDocumentStructure } from "../database/models/types";
+import { type RobotDocumentStructure } from "../types";
 
 const robotsMock: RobotDocumentStructure[] = [
   {
