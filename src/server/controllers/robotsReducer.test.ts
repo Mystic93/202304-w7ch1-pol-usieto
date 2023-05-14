@@ -13,6 +13,7 @@ const response: CustomType = {
   status: jest.fn().mockReturnThis(),
   json: jest.fn(),
 };
+
 const request = {};
 const next = jest.fn();
 
@@ -62,6 +63,7 @@ describe("Given a getRotots controller", () => {
         response as Response,
         next as NextFunction
       );
+
       expect(next).toHaveBeenCalledWith(error);
     });
   });
