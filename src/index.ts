@@ -1,8 +1,8 @@
 import "./loadEnvironments.js";
-import chalk from "chalk";
 import createDebug from "debug";
-import app from "./server/index.js";
 import mongoose from "mongoose";
+import chalk from "chalk";
+import app from "./server/index.js";
 
 const debug = createDebug("robotsdb-api:root");
 
@@ -18,6 +18,10 @@ app.listen(port, () => {
   debug(`Listening on ${chalk.green(`http://localhost:${port}`)}`);
 });
 
-await mongoose.connect(mongoDbConnection);
+try {
+  await mongoose.connect(mongoDbConnection);
 
-debug(chalk.blue(`Connnected to database`));
+  debug(chalk.blue(`Connnected to database`));
+} catch (error: unknown) {
+  debug(`Error connectin to basedata: ${chalk.red((error as Error).message)}`);
+}
