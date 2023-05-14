@@ -15,7 +15,7 @@ if (!mongoDbConnection) {
 }
 
 app.listen(port, () => {
-  debug(`Listening on ${chalk.green(`http://localhost:${port}`)}`);
+  debug(chalk.green(`Listening on http://localhost:${port}`));
 });
 
 try {

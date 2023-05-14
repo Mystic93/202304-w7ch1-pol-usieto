@@ -26,11 +26,7 @@ export const generalError = (
 
   const message = error.statusCode ? error.message : "Internal Server Error";
 
-  debug(
-    `Error: ${chalk.bgRed(` ${error.statusCode} `)} ${chalk.red(
-      `${error.message}`
-    )}`
-  );
+  debug(`Error: ${chalk.bgRed(error.statusCode)} ${chalk.red(error.message)}`);
 
   res.status(statusCode).json({ message });
 };
