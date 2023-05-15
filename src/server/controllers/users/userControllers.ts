@@ -1,6 +1,6 @@
 import { type JwtPayload } from "jsonwebtoken";
 import CustomError from "../../../CustomError/CustomError.js";
-import User from "../../../database/models/User";
+import User from "../../../database/models/User.js";
 import bcrypt from "bcryptjs";
 import { type Response, type NextFunction, type Request } from "express";
 import jwt from "jsonwebtoken";
@@ -16,7 +16,7 @@ const loginUser = async (
 ) => {
   const { username, password } = req.body;
   try {
-    const user = await User.findOne({ username, password }).exec();
+    const user = await User.findOne({ username });
 
     if (!user) {
       const customError = new CustomError(401, "Wrong credentials");
@@ -36,6 +36,8 @@ const loginUser = async (
     };
 
     const token = jwt.sign(tokenPayload, process.env.JWT_SECRET!);
+
+    jwt.verify(token, process.env.JWT_SECRET!);
     res.status(200).json({ token });
   } catch (error: unknown) {
     next(error);
